@@ -1,6 +1,6 @@
 ---
 theme: seriph
-background: https://images.unsplash.com/photo-1530819568329-97653eafbbfa
+background: https://cover.sli.dev
 title: Effective Engineer Introduction - Terry Lin
 class: text-center
 drawings:
@@ -45,7 +45,7 @@ Terry Lin @MediaTek
 
 <br/>
 
-> **Zappos CEO Tony Hsieh**：「每天改進 1%，一年後不是變好 365%，而是變好 37 倍」
+> 「每天改進 1%，一年後不是變好 365%，而是變好 37 倍」- Zappos CEO Tony Hsieh
 
 ---
 
@@ -234,3 +234,9 @@ Instagram 的成功案例
 5. **建立長期價值**：平衡品質與實用主義，最小化運營負擔
 
 **最終目標**：不是工作更長時間，而是產生更大價值
+
+---
+layout: center
+class: text-center
+---
+[Slide Repo Link](https://github.com/terry623/effecitve-engineer-introduction)
