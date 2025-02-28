@@ -1,636 +1,236 @@
 ---
-# You can also start simply with 'default'
 theme: seriph
-# random image from a curated Unsplash collection by Anthony
-# like them? see https://unsplash.com/collections/94734566/slidev
-background: https://cover.sli.dev
-# some information about your slides (markdown enabled)
-title: Welcome to Slidev
-info: |
-  ## Slidev Starter Template
-  Presentation slides for developers.
-
-  Learn more at [Sli.dev](https://sli.dev)
-# apply unocss classes to the current slide
+background: https://images.unsplash.com/photo-1530819568329-97653eafbbfa
+title: Effective Engineer Introduction - Terry Lin
 class: text-center
-# https://sli.dev/features/drawing
 drawings:
   persist: false
 # slide transition: https://sli.dev/guide/animations.html#slide-transitions
 transition: slide-left
-# enable MDC Syntax: https://sli.dev/features/mdc
 mdc: true
 ---
 
-# Welcome to Slidev
-
-Presentation slides for developers
-
-<div @click="$slidev.nav.next" class="mt-12 py-1" hover:bg="white op-10">
-  Press Space for next page <carbon:arrow-right />
-</div>
-
-<div class="abs-br m-6 text-xl">
-  <button @click="$slidev.nav.openInEditor" title="Open in Editor" class="slidev-icon-btn">
-    <carbon:edit />
-  </button>
-  <a href="https://github.com/slidevjs/slidev" target="_blank" class="slidev-icon-btn">
-    <carbon:logo-github />
-  </a>
-</div>
-
-<!--
-The last comment block of each slide will be treated as slide notes. It will be visible and editable in Presenter Mode along with the slide. [Read more in the docs](https://sli.dev/guide/syntax.html#notes)
--->
-
----
-transition: fade-out
----
-
-# What is Slidev?
-
-Slidev is a slides maker and presenter designed for developers, consist of the following features
-
-- 📝 **Text-based** - focus on the content with Markdown, and then style them later
-- 🎨 **Themable** - themes can be shared and re-used as npm packages
-- 🧑‍💻 **Developer Friendly** - code highlighting, live coding with autocompletion
-- 🤹 **Interactive** - embed Vue components to enhance your expressions
-- 🎥 **Recording** - built-in recording and camera view
-- 📤 **Portable** - export to PDF, PPTX, PNGs, or even a hostable SPA
-- 🛠 **Hackable** - virtually anything that's possible on a webpage is possible in Slidev
-<br>
-<br>
-
-Read more about [Why Slidev?](https://sli.dev/guide/why)
-
-<!--
-You can have `style` tag in markdown to override the style for the current page.
-Learn more: https://sli.dev/features/slide-scope-style
--->
-
-<style>
-h1 {
-  background-color: #2B90B6;
-  background-image: linear-gradient(45deg, #4EC5D4 10%, #146b8c 20%);
-  background-size: 100%;
-  -webkit-background-clip: text;
-  -moz-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  -moz-text-fill-color: transparent;
-}
-</style>
-
-<!--
-Here is another comment.
--->
-
----
-transition: slide-up
-level: 2
----
-
-# Navigation
-
-Hover on the bottom-left corner to see the navigation's controls panel, [learn more](https://sli.dev/guide/ui#navigation-bar)
-
-## Keyboard Shortcuts
-
-|                                                     |                             |
-| --------------------------------------------------- | --------------------------- |
-| <kbd>right</kbd> / <kbd>space</kbd>                 | next animation or slide     |
-| <kbd>left</kbd>  / <kbd>shift</kbd><kbd>space</kbd> | previous animation or slide |
-| <kbd>up</kbd>                                       | previous slide              |
-| <kbd>down</kbd>                                     | next slide                  |
-
-<!-- https://sli.dev/guide/animations.html#click-animation -->
-<img
-  v-click
-  class="absolute -bottom-9 -left-7 w-80 opacity-50"
-  src="https://sli.dev/assets/arrow-bottom-left.svg"
-  alt=""
-/>
-<p v-after class="absolute bottom-23 left-45 opacity-30 transform -rotate-10">Here!</p>
-
----
-layout: two-cols
-layoutClass: gap-16
----
-
-# Table of contents
-
-You can use the `Toc` component to generate a table of contents for your slides:
-
-```html
-<Toc minDepth="1" maxDepth="1" />
-```
-
-The title will be inferred from your slide content, or you can override it with `title` and `level` in your frontmatter.
-
-::right::
-
-<Toc text-sm minDepth="1" maxDepth="2" />
-
----
-layout: image-right
-image: https://cover.sli.dev
----
-
-# Code
-
-Use code snippets and get the highlighting directly, and even types hover!
-
-```ts {all|5|7|7-8|10|all} twoslash
-// TwoSlash enables TypeScript hover information
-// and errors in markdown code blocks
-// More at https://shiki.style/packages/twoslash
-
-import { computed, ref } from 'vue'
-
-const count = ref(0)
-const doubled = computed(() => count.value * 2)
-
-doubled.value = 2
-```
-
-<arrow v-click="[4, 5]" x1="350" y1="310" x2="195" y2="334" color="#953" width="2" arrowSize="1" />
-
-<!-- This allow you to embed external code blocks -->
-<<< @/snippets/external.ts#snippet
-
-<!-- Footer -->
-
-[Learn more](https://sli.dev/features/line-highlighting)
-
-<!-- Inline style -->
-<style>
-.footnotes-sep {
-  @apply mt-5 opacity-10;
-}
-.footnotes {
-  @apply text-sm opacity-75;
-}
-.footnote-backref {
-  display: none;
-}
-</style>
-
-<!--
-Notes can also sync with clicks
-
-[click] This will be highlighted after the first click
-
-[click] Highlighted with `count = ref(0)`
-
-[click:3] Last click (skip two clicks)
--->
-
----
-level: 2
----
-
-# Shiki Magic Move
-
-Powered by [shiki-magic-move](https://shiki-magic-move.netlify.app/), Slidev supports animations across multiple code snippets.
-
-Add multiple code blocks and wrap them with <code>````md magic-move</code> (four backticks) to enable the magic move. For example:
-
-````md magic-move {lines: true}
-```ts {*|2|*}
-// step 1
-const author = reactive({
-  name: 'John Doe',
-  books: [
-    'Vue 2 - Advanced Guide',
-    'Vue 3 - Basic Guide',
-    'Vue 4 - The Mystery'
-  ]
-})
-```
-
-```ts {*|1-2|3-4|3-4,8}
-// step 2
-export default {
-  data() {
-    return {
-      author: {
-        name: 'John Doe',
-        books: [
-          'Vue 2 - Advanced Guide',
-          'Vue 3 - Basic Guide',
-          'Vue 4 - The Mystery'
-        ]
-      }
-    }
-  }
-}
-```
-
-```ts
-// step 3
-export default {
-  data: () => ({
-    author: {
-      name: 'John Doe',
-      books: [
-        'Vue 2 - Advanced Guide',
-        'Vue 3 - Basic Guide',
-        'Vue 4 - The Mystery'
-      ]
-    }
-  })
-}
-```
-
-Non-code blocks are ignored.
-
-```vue
-<!-- step 4 -->
-<script setup>
-const author = {
-  name: 'John Doe',
-  books: [
-    'Vue 2 - Advanced Guide',
-    'Vue 3 - Basic Guide',
-    'Vue 4 - The Mystery'
-  ]
-}
-</script>
-```
-````
+# How to be an<br/>Effective Engineer?
+Terry Lin @MediaTek
 
 ---
 
-# Components
+## 什麼是高效能工程師？
 
-<div grid="~ cols-2 gap-4">
-<div>
+高效能工程師不是靠工作更長時間，而是通過發揮槓桿效應創造最大價值
 
-You can use Vue components directly inside your slides.
+* **槓桿（Leverage）** = 產出的價值 ÷ 投入的時間
+* 高效能工程師專注於提高槓桿值的活動
 
-We have provided a few built-in components like `<Tweet/>` and `<Youtube/>` that you can use directly. And adding your custom components is also super easy.
-
-```html
-<Counter :count="10" />
-```
-
-<!-- ./components/Counter.vue -->
-<Counter :count="10" m="t-4" />
-
-Check out [the guides](https://sli.dev/builtin/components.html) for more.
-
-</div>
-<div>
-
-```html
-<Tweet id="1390115482657726468" />
-```
-
-<Tweet id="1390115482657726468" scale="0.65" />
-
-</div>
-</div>
-
-<!--
-Presenter note with **bold**, *italic*, and ~~striked~~ text.
-
-Also, HTML elements are valid:
-<div class="flex w-full">
-  <span style="flex-grow: 1;">Left content</span>
-  <span>Right content</span>
-</div>
--->
-
----
-class: px-20
----
-
-# Themes
-
-Slidev comes with powerful theming support. Themes can provide styles, layouts, components, or even configurations for tools. Switching between themes by just **one edit** in your frontmatter:
-
-<div grid="~ cols-2 gap-2" m="t-2">
-
-```yaml
----
-theme: default
----
-```
-
-```yaml
----
-theme: seriph
----
-```
-
-<img border="rounded" src="https://github.com/slidevjs/themes/blob/main/screenshots/theme-default/01.png?raw=true" alt="">
-
-<img border="rounded" src="https://github.com/slidevjs/themes/blob/main/screenshots/theme-seriph/01.png?raw=true" alt="">
-
-</div>
-
-Read more about [How to use a theme](https://sli.dev/guide/theme-addon#use-theme) and
-check out the [Awesome Themes Gallery](https://sli.dev/resources/theme-gallery).
+**提高槓桿的三種方法：**
+1. 減少完成活動所需的時間
+2. 提高特定活動產生的價值
+3. 轉向更高槓桿的活動
 
 ---
 
-# Clicks Animations
+## 正確思維方式 I：優化學習
 
-You can add `v-click` to elements to add a click animation.
+**採用成長思維**
 
-<div v-click>
+* 相信能力可以通過努力提升
+* 視失敗為學習機會
+* 掌握自己的故事
 
-This shows up when you click the slide:
+**複利學習效應**
 
-```html
-<div v-click>This shows up when you click the slide.</div>
-```
+* 學習跟利息一樣會複利增長
+* 1% 的每日提升 = 一年後提高 37 倍
+* 早期投資學習帶來長期指數型增長
 
-</div>
+<br/>
 
-<br>
-
-<v-click>
-
-The <span v-mark.red="3"><code>v-mark</code> directive</span>
-also allows you to add
-<span v-mark.circle.orange="4">inline marks</span>
-, powered by [Rough Notation](https://roughnotation.com/):
-
-```html
-<span v-mark.underline.orange>inline markers</span>
-```
-
-</v-click>
-
-<div mt-20 v-click>
-
-[Learn more](https://sli.dev/guide/animations#click-animation)
-
-</div>
+> **Zappos CEO Tony Hsieh**：「每天改進 1%，一年後不是變好 365%，而是變好 37 倍」
 
 ---
 
-# Motions
+## 正確思維方式 II：定期優先排序
 
-Motion animations are powered by [@vueuse/motion](https://motion.vueuse.org/), triggered by `v-motion` directive.
+建立有效的任務管理系統
 
-```html
-<div
-  v-motion
-  :initial="{ x: -80 }"
-  :enter="{ x: 0 }"
-  :click-3="{ x: 80 }"
-  :leave="{ x: 1000 }"
->
-  Slidev
-</div>
-```
+* 使用單一、易於訪問的待辦事項清單
+* 大腦是處理器，不是記憶庫
 
-<div class="w-60 relative">
-  <div class="relative w-40 h-40">
-    <img
-      v-motion
-      :initial="{ x: 800, y: -100, scale: 1.5, rotate: -50 }"
-      :enter="final"
-      class="absolute inset-0"
-      src="https://sli.dev/logo-square.png"
-      alt=""
-    />
-    <img
-      v-motion
-      :initial="{ y: 500, x: -100, scale: 2 }"
-      :enter="final"
-      class="absolute inset-0"
-      src="https://sli.dev/logo-circle.png"
-      alt=""
-    />
-    <img
-      v-motion
-      :initial="{ x: 600, y: 400, scale: 2, rotate: 100 }"
-      :enter="final"
-      class="absolute inset-0"
-      src="https://sli.dev/logo-triangle.png"
-      alt=""
-    />
-  </div>
+專注高價值活動
 
-  <div
-    class="text-5xl absolute top-14 left-40 text-[#2B90B6] -z-1"
-    v-motion
-    :initial="{ x: -80, opacity: 0}"
-    :enter="{ x: 0, opacity: 1, transition: { delay: 2000, duration: 1000 } }">
-    Slidev
-  </div>
-</div>
+* 直接產生價值的工作
+* 重要但不緊急的活動（第二象限任務）
+  * 學習新技能、建立更好工具、改進基礎設施
 
-<!-- vue script setup scripts can be directly used in markdown, and will only affects current page -->
-<script setup lang="ts">
-const final = {
-  x: 0,
-  y: 0,
-  rotate: 0,
-  scale: 1,
-  transition: {
-    type: 'spring',
-    damping: 10,
-    stiffness: 20,
-    mass: 2
-  }
-}
-</script>
+保護創造者時間表
 
-<div
-  v-motion
-  :initial="{ x:35, y: 30, opacity: 0}"
-  :enter="{ y: 0, opacity: 1, transition: { delay: 3500 } }">
-
-[Learn more](https://sli.dev/guide/animations.html#motion)
-
-</div>
+* 限制同時進行的工作數量
+* 使用 「如果-那麼」計劃對抗拖延
 
 ---
 
-# LaTeX
+## 執行力 I：投資迭代速度
 
-LaTeX is supported out-of-box. Powered by [KaTeX](https://katex.org/).
+快速移動，快速學習
 
-<div h-3 />
+* 持續部署（Continuous Deployment）
+  * Instagram, Etsy, IMVU 等公司的成功案例
+  * 小批量、增量式變更的價值
 
-Inline $\sqrt{3x-1}+(1+x)^2$
+投資省時工具
 
-Block
-$$ {1|3|all}
-\begin{aligned}
-\nabla \cdot \vec{E} &= \frac{\rho}{\varepsilon_0} \\
-\nabla \cdot \vec{B} &= 0 \\
-\nabla \times \vec{E} &= -\frac{\partial\vec{B}}{\partial t} \\
-\nabla \times \vec{B} &= \mu_0\vec{J} + \mu_0\varepsilon_0\frac{\partial\vec{E}}{\partial t}
-\end{aligned}
-$$
+* 自動化重複性工作
+* 縮短偵錯和驗證循環
+* 精通你的編程環境
 
-[Learn more](https://sli.dev/features/latex)
+<br/>
+
+>「如果你從不破壞任何東西，你可能移動得不夠快」— Mark Zuckerberg
 
 ---
 
-# Diagrams
+## 執行力 II：度量你想改進的指標
 
-You can create diagrams / graphs from textual descriptions, directly in your Markdown.
+選擇正確的指標
 
-<div class="grid grid-cols-4 gap-5 pt-4 -mb-6">
+* 長期點擊率 vs 短期點擊率
+* 平均響應時間 vs 第95/99百分位響應時間
+* 總用戶數 vs 每週增長率
 
-```mermaid {scale: 0.5, alt: 'A simple sequence diagram'}
-sequenceDiagram
-    Alice->John: Hello John, how are you?
-    Note over Alice,John: A typical interaction
-```
+全面監控系統
 
-```mermaid {theme: 'neutral', scale: 0.8}
-graph TD
-B[Text] --> C{Decision}
-C -->|One| D[Result 1]
-C -->|Two| E[Result 2]
-```
+* 建立儀表板監控關鍵健康指標
+* 內化關鍵基準數據（如請求延遲、數據大小等）
+* 保持對數據完整性的警惕
 
-```mermaid
-mindmap
-  root((mindmap))
-    Origins
-      Long history
-      ::icon(fa fa-book)
-      Popularisation
-        British popular psychology author Tony Buzan
-    Research
-      On effectiveness<br/>and features
-      On Automatic creation
-        Uses
-            Creative techniques
-            Strategic planning
-            Argument mapping
-    Tools
-      Pen and paper
-      Mermaid
-```
+<br/>
 
-```plantuml {scale: 0.7}
-@startuml
-
-package "Some Group" {
-  HTTP - [First Component]
-  [Another Component]
-}
-
-node "Other Groups" {
-  FTP - [Second Component]
-  [First Component] --> FTP
-}
-
-cloud {
-  [Example 1]
-}
-
-database "MySql" {
-  folder "This is my folder" {
-    [Folder 3]
-  }
-  frame "Foo" {
-    [Frame 4]
-  }
-}
-
-[Another Component] --> [Example 1]
-[Example 1] --> [Folder 3]
-[Folder 3] --> [Frame 4]
-
-@enduml
-```
-
-</div>
-
-Learn more: [Mermaid Diagrams](https://sli.dev/features/mermaid) and [PlantUML Diagrams](https://sli.dev/features/plantuml)
-
----
-foo: bar
-dragPos:
-  square: 691,32,167,_,-16
----
-
-# Draggable Elements
-
-Double-click on the draggable elements to edit their positions.
-
-<br>
-
-###### Directive Usage
-
-```md
-<img v-drag="'square'" src="https://sli.dev/logo.png">
-```
-
-<br>
-
-###### Component Usage
-
-```md
-<v-drag text-3xl>
-  <div class="i-carbon:arrow-up" />
-  Use the `v-drag` component to have a draggable container!
-</v-drag>
-```
-
-<v-drag pos="663,206,261,_,-15">
-  <div text-center text-3xl border border-main rounded>
-    Double-click me!
-  </div>
-</v-drag>
-
-<img v-drag="'square'" src="https://sli.dev/logo.png">
-
-###### Draggable Arrow
-
-```md
-<v-drag-arrow two-way />
-```
-
-<v-drag-arrow pos="67,452,253,46" two-way op70 />
-
----
-src: ./pages/imported-slides.md
-hide: false
----
+>「無法度量就無法改進」— Peter Drucker
 
 ---
 
-# Monaco Editor
+## 執行力 III：早期並頻繁地驗證想法
 
-Slidev provides built-in Monaco Editor support.
+低成本驗證方法
 
-Add `{monaco}` to the code block to turn it into an editor:
+* 使用最小可行產品（MVP）驗證假設
+  * Dropbox 靠一段 4 分鐘視頻將測試名單從 5,000 增加到 75,000
+* 專注於解決風險最高的問題
 
-```ts {monaco}
-import { ref } from 'vue'
-import { emptyArray } from './external'
+A/B 測試的力量
 
-const arr = ref(emptyArray(10))
-```
+* 歐巴馬競選團隊通過 A/B 測試電子郵件標題提高 600% 捐款
+* Etsy 通過持續實驗改進產品頁面設計
 
-Use `{monaco-run}` to create an editor that can execute the code directly in the slide:
+防範一人團隊風險
 
-```ts {monaco-run}
-import { version } from 'vue'
-import { emptyArray, sayHello } from './external'
-
-sayHello()
-console.log(`vue ${version}`)
-console.log(emptyArray<number>(10).reduce(fib => [...fib, fib.at(-1)! + fib.at(-2)!], [1, 1]))
-```
+* 及早提交城市碼並獲取反饋
+* 從嚴格的評論者那裡尋求程式碼審查
 
 ---
-layout: center
-class: text-center
+
+## 執行力 IV：改進項目估算技能
+
+項目估算原則
+
+* 將項目分解為細粒度任務
+* 基於任務實際所需時間估算，而非期望時間
+* 將估算視為概率分布，而非最佳情況
+
+處理未知因素
+
+* 為意外事件預留緩衝時間
+* 避免神話般的人月錯誤（Mythical Man-Month）
+* 盡早減輕風險，先處理高風險區域
+
+謹慎對待重寫項目
+
+* 增量式重寫而非一次性大規模重寫
+* 分階段執行，確保每個階段都有可交付成果
+
 ---
 
-# Learn More
+## 長期價值 I：平衡品質與實用主義
 
-[Documentation](https://sli.dev) · [GitHub](https://github.com/slidevjs/slidev) · [Showcases](https://sli.dev/resources/showcases)
+可持續的品質保證
 
-<PoweredBySlidev mt-10 />
+* 建立適合團隊的程式碼審查流程
+* 通過自動化測試擴展程式碼品質
+  * 測試驅動的平穩錯誤率曲線
+
+抽象管理複雜性
+
+* 好的抽象大幅提高工程生產力（如 Google 的 MapReduce）
+* 避免過早抽象化的陷阱（如 Asana 一年打造自己的框架）
+
+技術債務管理
+
+* 有意識地選擇何時累積
+* 定期償還高利息的技術債務
+
+---
+
+## 長期價值 II：最小化運營負擔
+
+Instagram 的成功案例
+
+* 13 名員工支持 4 千萬用戶
+* **首要原則**：做簡單的事情
+* 選擇成熟穩定的技術而非最新趨勢技術
+
+減少運營負擔策略
+
+* 構建快速失敗的系統
+* 堅持自動化機械性任務
+* 使批處理過程幂等（idempotent）
+* 練習快速恢復能力（而非完全避免失敗）
+  * Netflix 的混沌猴子（Chaos Monkey）案例
+
+---
+
+## 長期價值 III：投資團隊成長
+
+提升團隊能力
+
+* 讓招聘成為每個人的責任
+* 設計有效的入職流程
+  * 導師制、入職培訓、起步任務
+
+強化團隊文化
+
+* 共享程式碼所有權
+* 通過事後分析建立集體智慧
+* 打造優秀的工程文化
+  * 優化迭代速度、自動化、良好的抽象、高品質程式碼、尊重的工作環境
+
+---
+
+## 付諸實踐：行動計劃
+
+個人層面
+
+* 識別您當前工作中的 2-3 個高槓桿活動
+* 每週留出固定時間進行學習
+* 建立個人優先級排序系統
+* 自動化您反覆進行的任務
+
+團隊層面
+
+* 評估您團隊的迭代速度和改進空間
+* 建立或改進入職流程
+* 推動分享知識和集體學習的文化
+* 定期評估團隊運營負擔並尋找簡化方案
+
+---
+
+## 核心要點
+
+「時間是我們最有限的資產，而槓桿讓我們能將時間投向最重要的事情」
+
+1. **專注高槓桿活動**：持續尋找能產生最大價值/時間比的工作
+2. **優化學習**：投資於學習的複利增長
+3. **定期優先排序**：將時間投入到重要而非緊急的任務上
+4. **提高迭代速度**：快速移動，快速學習
+5. **建立長期價值**：平衡品質與實用主義，最小化運營負擔
+
+**最終目標**：不是工作更長時間，而是產生更大價值
