@@ -1,6 +1,6 @@
 ---
 theme: seriph
-background: https://cover.sli.dev
+background: './images/background.jpg'
 title: Effective Engineer Introduction - Terry Lin
 class: text-center
 drawings:
