@@ -1,6 +1,6 @@
 ---
 theme: seriph
-background: './images/background.jpg'
+background: https://cover.sli.dev
 title: Effective Engineer Introduction - Terry Lin
 class: text-center
 drawings:
@@ -15,7 +15,7 @@ Terry Lin @MediaTek
 
 ---
 layout: image-right
-image: ./images/book.jpg
+image: "https://m.media-amazon.com/images/I/61AdWLqiIBL.jpg"
 backgroundSize: 50%
 ---
 ## 書籍介紹
